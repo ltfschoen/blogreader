@@ -31,22 +31,53 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
+    // create NSURL class object a convenience class to breakdown url
+    //NSURL *blogURL = [NSURL URLWithString:@"http://blog.teamtreehouse.com/api/get_recent_summary/"];
+    NSURL *blogURL = [NSURL URLWithString:@"http://www.omdbapi.com/?s=Terminator"];
+    
+    // download the data (NSData object stream from JSON)
+    NSData *jsonData = [NSData dataWithContentsOfURL:blogURL];
+    
+    // take the data which is in byte format and parse it so understood by NSDictionary
+    
+    // declare pointer in memory
+    NSError *error = nil;
+    
+    // deserialise data into JSON object format so can be stored in dictionary
+    // pass a pointer reference to NSError so value can be modified by the method passing it to (otherwise just passing by value and can only read
+    // i.e. &__  means value can be modified by the method
+    // i.e. ___  means just passing its the value and it can only read your object
+    
+    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    
+    NSLog(@"%@", dataDictionary);
+    
+    
+// REMOVED AS RETRIEVING FROM JSON URL
+    // all blog posts are contained in a 'posts' array, so pass it the key 'posts'
+    
     // declaration for key value pair
     //NSDictionary *blogPost1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Blogpost1", @"title", @"Luke Schoen", @"author", nil];
     
     // ALTERNATIVE convenience constructor for NSDictionary
-    NSDictionary *blogPost1 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost1", @"title",@"Luke Schoen", @"author", nil];
+//    NSDictionary *blogPost1 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost1", @"title",@"Luke Schoen", @"author", nil];
+//    
+//    NSDictionary *blogPost2 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost2", @"title",@"Claudia Lucero", @"author", nil];
+//    
+//    NSDictionary *blogPost3 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost3", @"title",@"Luke Schoen", @"author", nil];
+//    
+//    NSLog(@"%@", blogPost1);
+//    NSLog(@"%@", blogPost2);
+//    NSLog(@"%@", blogPost3);
     
-    NSDictionary *blogPost2 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost2", @"title",@"Claudia Lucero", @"author", nil];
+//    // create an array of blogposts (NSDictionary Objects)
+//    self.blogPosts = [NSArray arrayWithObjects:blogPost1,blogPost2, blogPost3, nil];
     
-    NSDictionary *blogPost3 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost3", @"title",@"Luke Schoen", @"author", nil];
     
-    NSLog(@"%@", blogPost1);
-    NSLog(@"%@", blogPost2);
-    NSLog(@"%@", blogPost3);
+    // send message to dataDictionary that returns array of blog posts from JSON
+    //self.blogPosts = [dataDictionary objectForKey:@"posts"];
+    self.blogPosts = [dataDictionary objectForKey:@"Search"];
     
-    // create an array of blogposts (NSDictionary Objects)
-    self.blogPosts = [NSArray arrayWithObjects:blogPost1,blogPost2, blogPost3, nil];
     
     // array of titles alloc and init
     //self.titlesArray = [[NSArray alloc] initWithObjects:..., nil];
@@ -60,13 +91,13 @@
 //                                                @"Blog2",
 //                                                @"Blog3", nil];
 
-    NSMutableArray *elements = [NSMutableArray array];
-    
-    [elements addObject:@"Helium"];
-    [elements addObject:@"Neon"];
-    [elements addObject:@"Argon"];
-    
-    NSLog(@"%@", elements);
+//    NSMutableArray *elements = [NSMutableArray array];
+//    
+//    [elements addObject:@"Helium"];
+//    [elements addObject:@"Neon"];
+//    [elements addObject:@"Argon"];
+//    
+//    NSLog(@"%@", elements);
     
     
 #pragma mark - 
@@ -151,8 +182,8 @@
     NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
     
     // take NSDictionary and extract 'title' from it to set our cell textLabel
-    cell.textLabel.text = [blogPost valueForKey:@"title"];
-    cell.detailTextLabel.text = [blogPost valueForKey:@"author"];
+    cell.textLabel.text = [blogPost valueForKey:@"Title"];
+    cell.detailTextLabel.text = [blogPost valueForKey:@"Year"];
     
 // REPLACED WITH ARRAY OF NSDICTIONARY 'BLOGPOSTS' OBJECTS ABOVE (INSTEAD OF WITH NAME 'TITLE')
 //    // ALTERNATIVE (common convention)
