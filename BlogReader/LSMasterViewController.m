@@ -40,6 +40,10 @@
                                                 @"Blog2",
                                                 @"Blog3", nil];
     
+    NSString *blogTitle = self.titlesArray[2];
+    self.blogTitle = [blogTitle uppercaseString];
+    NSLog(@"%@", [blogTitle uppercaseString]);
+    
 #pragma mark - 
 #pragma mark Add/Edit Start
 // NOT ADD OR EDIT INITIALLY
@@ -101,8 +105,18 @@
 
 // responsive technique that returns table view cell (of type UITableViewCell)
 // indexPath is passed as an arguement to this method to tell the method the location of the cell to create
+// cellForRowAtIndexPath is responsible for creating table view cells
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // WRONG METHOD (INEFFICIENT)
+    // alloc and init a new table view cell for each row to be display in table view
+    // gives as many rows and qty items in array, which is not good.
+    // as if we have a thousand rows in array then have to alloc a thousand table view cells
+    // causing app to be slow
+    //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    
+    // ALTERNATIVE allows table view to efficiently manage the cells with each cell having an
+    // identifier identified in the storyboard so when table view cell scrolls beyond the screen the table view remarks it for reusability and recycles it for a new row
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     // store object from array into a variable
@@ -114,7 +128,7 @@
     NSString *object = self.titlesArray[indexPath.row];
     
     // pass object to the text
-    cell.textLabel.text = object;
+    cell.textLabel.text = [object uppercaseString];
     return cell;
     
     //NSDate *object = _objects[indexPath.row];

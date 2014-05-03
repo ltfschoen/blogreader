@@ -12,5 +12,6 @@
 
 // create property to hold data
 @property (strong, nonatomic) NSArray *titlesArray;
+@property (strong, nonatomic) NSString *blogTitle;
 
 @end
