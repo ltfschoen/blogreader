@@ -108,7 +108,7 @@
 // cellForRowAtIndexPath is responsible for creating table view cells
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // WRONG METHOD (INEFFICIENT)
+    // WRONG METHOD (INEFFICIENT MEMORY MANAGEMENT)
     // alloc and init a new table view cell for each row to be display in table view
     // gives as many rows and qty items in array, which is not good.
     // as if we have a thousand rows in array then have to alloc a thousand table view cells
@@ -176,8 +176,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // method (rather than dot notation) used to check Segue identifier 'showDetail' matches the one in the storyboard
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-// NOT REQUIRED INITIALLY
+        // get indexPath of the selected row
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        // access appropriate title from titlesArray
+        NSString *title = self.titlesArray[indexPath.row];
+        // get DetailViewController (destination) and get it to the title from the array
+        // method chaining used. perform setDetailItem on return value of [segue ...]
+        [[segue destinationViewController] setDetailItem:title];
+
+        
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 //        NSDate *object = _objects[indexPath.row];
 //        [[segue destinationViewController] setDetailItem:object];
