@@ -30,19 +30,44 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
+    // declaration for key value pair
+    //NSDictionary *blogPost1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Blogpost1", @"title", @"Luke Schoen", @"author", nil];
+    
+    // ALTERNATIVE convenience constructor for NSDictionary
+    NSDictionary *blogPost1 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost1", @"title",@"Luke Schoen", @"author", nil];
+    
+    NSDictionary *blogPost2 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost2", @"title",@"Claudia Lucero", @"author", nil];
+    
+    NSDictionary *blogPost3 = [NSDictionary dictionaryWithObjectsAndKeys:@"Blogpost3", @"title",@"Luke Schoen", @"author", nil];
+    
+    NSLog(@"%@", blogPost1);
+    NSLog(@"%@", blogPost2);
+    NSLog(@"%@", blogPost3);
+    
+    // create an array of blogposts (NSDictionary Objects)
+    self.blogPosts = [NSArray arrayWithObjects:blogPost1,blogPost2, blogPost3, nil];
     
     // array of titles alloc and init
     //self.titlesArray = [[NSArray alloc] initWithObjects:..., nil];
     
-    // ALTERNATIVE CONVENIENCE METHOD (automatically does alloc and init)
-    // use this array of strings property in methods of the data source (Table View)
-    self.titlesArray = [NSArray arrayWithObjects:@"Blog1",
-                                                @"Blog2",
-                                                @"Blog3", nil];
     
-    NSString *blogTitle = self.titlesArray[2];
-    self.blogTitle = [blogTitle uppercaseString];
-    NSLog(@"%@", [blogTitle uppercaseString]);
+// REPLACED WITH ARRAY OF NSDICTIONARY 'BLOGPOSTS' OBJECTS ABOVE (INSTEAD OF WITH NAME 'TITLE')
+//    // ALTERNATIVE CONVENIENCE METHOD (automatically does alloc and init)
+//    // use this array of strings property in methods of the data source (Table View)
+//    // alloc and initialise the array
+//    self.titlesArray = [NSArray arrayWithObjects:@"Blog1",
+//                                                @"Blog2",
+//                                                @"Blog3", nil];
+
+    NSMutableArray *elements = [NSMutableArray array];
+    
+    [elements addObject:@"Helium"];
+    [elements addObject:@"Neon"];
+    [elements addObject:@"Argon"];
+    
+    NSLog(@"%@", elements);
+    
     
 #pragma mark - 
 #pragma mark Add/Edit Start
@@ -86,7 +111,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // create list categories (for blog posts section separation)
-    return 3;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -98,7 +123,7 @@
     //return self.titlesArray.count;
     
     // ALTERNATIVE (called as a method to the titlesArray property)
-    return [self.titlesArray count];
+    return [self.blogPosts count];
     
     //return _objects.count;
 }
@@ -122,13 +147,21 @@
     // store object from array into a variable
     //NSString *object = [self.titlesArray objectAtIndex:indexPath.row];
     
-    // ALTERNATIVE (common convention)
-    // indexPath is an Object with two Properties (Section, and a Row in that Section)
-    // accessing the row property we know what Object to access for the Array and display in cell
-    NSString *object = self.titlesArray[indexPath.row];
+    // gives blogpost at particular row (NSDictionary object, not just a string like when it was an Array)
+    NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
     
-    // pass object to the text
-    cell.textLabel.text = [object uppercaseString];
+    // take NSDictionary and extract 'title' from it to set our cell textLabel
+    cell.textLabel.text = [blogPost valueForKey:@"title"];
+    cell.detailTextLabel.text = [blogPost valueForKey:@"author"];
+    
+// REPLACED WITH ARRAY OF NSDICTIONARY 'BLOGPOSTS' OBJECTS ABOVE (INSTEAD OF WITH NAME 'TITLE')
+//    // ALTERNATIVE (common convention)
+//    // indexPath is an Object with two Properties (Section, and a Row in that Section)
+//    // accessing the row property we know what Object to access for the Array and display in cell
+//    NSString *object = self.titlesArray[indexPath.row];
+
+//    // pass object to the text
+//    cell.textLabel.text = [object uppercaseString];
     return cell;
     
     //NSDate *object = _objects[indexPath.row];
@@ -181,10 +214,11 @@
         // get indexPath of the selected row
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         // access appropriate title from titlesArray
-        NSString *title = self.titlesArray[indexPath.row];
+        NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+        //NSString *title = self.titlesArray[indexPath.row];
         // get DetailViewController (destination) and get it to the title from the array
         // method chaining used. perform setDetailItem on return value of [segue ...]
-        [[segue destinationViewController] setDetailItem:title];
+        [[segue destinationViewController] setDetailItem:blogPost];
 
         
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
