@@ -205,6 +205,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Ceenos;
 				TargetAttributes = {
+					A31248D519137B0A003D974A = {
+						DevelopmentTeam = VWNSUBS8K9;
+					};
 					A31248F919137B0A003D974A = {
 						TestTargetID = A31248D519137B0A003D974A;
 					};
@@ -383,6 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlogReader/BlogReader-Prefix.pch";
 				INFOPLIST_FILE = "BlogReader/BlogReader-Info.plist";
@@ -396,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlogReader/BlogReader-Prefix.pch";
 				INFOPLIST_FILE = "BlogReader/BlogReader-Info.plist";
