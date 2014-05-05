@@ -22,6 +22,7 @@
 		A31248FE19137B0A003D974A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31248DD19137B0A003D974A /* UIKit.framework */; };
 		A312490619137B0A003D974A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A312490419137B0A003D974A /* InfoPlist.strings */; };
 		A312490819137B0A003D974A /* BlogReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A312490719137B0A003D974A /* BlogReaderTests.m */; };
+		A312495619175A60003D974A /* BlogPost.m in Sources */ = {isa = PBXBuildFile; fileRef = A312495519175A60003D974A /* BlogPost.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		A312490319137B0A003D974A /* BlogReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlogReaderTests-Info.plist"; sourceTree = "<group>"; };
 		A312490519137B0A003D974A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A312490719137B0A003D974A /* BlogReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlogReaderTests.m; sourceTree = "<group>"; };
+		A312495419175A60003D974A /* BlogPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogPost.h; sourceTree = "<group>"; };
+		A312495519175A60003D974A /* BlogPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogPost.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				A31248F219137B0A003D974A /* LSDetailViewController.m */,
 				A31248F419137B0A003D974A /* Images.xcassets */,
 				A31248E019137B0A003D974A /* Supporting Files */,
+				A312495419175A60003D974A /* BlogPost.h */,
+				A312495519175A60003D974A /* BlogPost.m */,
 			);
 			path = BlogReader;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			files = (
 				A31248F319137B0A003D974A /* LSDetailViewController.m in Sources */,
 				A31248E619137B0A003D974A /* main.m in Sources */,
+				A312495619175A60003D974A /* BlogPost.m in Sources */,
 				A31248F019137B0A003D974A /* LSMasterViewController.m in Sources */,
 				A31248EA19137B0A003D974A /* LSAppDelegate.m in Sources */,
 			);
@@ -468,6 +474,7 @@
 				A312490D19137B0A003D974A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A312490E19137B0A003D974A /* Build configuration list for PBXNativeTarget "BlogReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +483,7 @@
 				A312491019137B0A003D974A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
