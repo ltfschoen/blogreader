@@ -36,34 +36,34 @@
     // alloc and init using Dedicated Initalizer 'initWithTitle'
     // Dedicated Initalizer ensures when initialize BlogPost it must have a Title
     // creates a valid instance of BlogPost with a new title
-    BlogPost *bp = [[BlogPost alloc] initWithTitle:@"some title"];
-    bp.someAuthor = @"Author";
+//    BlogPost *bp = [[BlogPost alloc] initWithTitle:@"some title"];
+//    bp.someAuthor = @"Author";
     
     // create another BlogPost Instance using CONVENIENCE CONSTRUCTOR
     // call Class method directly instead of having to allocate it because
     // inside this Class we are allocating a new Instance of BlogPost already
-    BlogPost *bp1 = [BlogPost blogPostWithTitle:@"another title"];
-    bp1.someTitle = @"Luke";
+//    BlogPost *bp1 = [BlogPost blogPostWithTitle:@"another title"];
+//    bp1.someTitle = @"Luke";
     
     // test access instance variable from custom class BlogPost using dot notation
-    BlogPost *blogPost = [[BlogPost alloc] init];
-    blogPost.someTitle = @"test title";
-    blogPost.someAuthor = @"test author";
-    NSString *string = blogPost.someTitle;
+//    BlogPost *blogPost = [[BlogPost alloc] init];
+//    blogPost.someTitle = @"test title";
+//    blogPost.someAuthor = @"test author";
+//    NSString *string = blogPost.someTitle;
     // ALTERNATIVE #1
     //NSString *string =[blogPost title];
     // ALTERNATIVE #2 call method to set instance title of BlogPost object 
     //[blogPost setTitle:@"some title"];
-    NSLog(@"%@", string);
+//    NSLog(@"%@", string);
     
     // more readable than blogPost.unread
-    if (blogPost.isUnread) {
-        NSLog(@"%@", @"hi");
-    }
+//    if (blogPost.isUnread) {
+//        NSLog(@"%@", @"hi");
+//    }
 
     // create NSURL class object a convenience class to breakdown url
-    //NSURL *blogURL = [NSURL URLWithString:@"http://blog.teamtreehouse.com/api/get_recent_summary/"];
-    NSURL *blogURL = [NSURL URLWithString:@"http://www.omdbapi.com/?s=Terminator"];
+    NSURL *blogURL = [NSURL URLWithString:@"http://blog.teamtreehouse.com/api/get_recent_summary/"];
+    //NSURL *blogURL = [NSURL URLWithString:@"http://www.omdbapi.com/?s=Terminator"];
     
     // download the data (NSData object stream from JSON)
     NSData *jsonData = [NSData dataWithContentsOfURL:blogURL];
@@ -80,7 +80,7 @@
     
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    NSLog(@"%@", dataDictionary);
+    //NSLog(@"%@", dataDictionary);
     
     
 // REMOVED AS RETRIEVING FROM JSON URL
@@ -106,8 +106,28 @@
     
     // send message to dataDictionary that returns array of blog posts from JSON
     //self.blogPosts = [dataDictionary objectForKey:@"posts"];
-    self.blogPosts = [dataDictionary objectForKey:@"Search"];
+//    self.blogPosts = [dataDictionary objectForKey:@"Search"];
     
+    // init NSMutableArray blogPost
+    self.blogPosts = [NSMutableArray array]; // do not know capacity
+    
+    // temp array to return all posts from dataDictionary
+    //NSArray *blogPostsArray = [dataDictionary objectForKey:@"Search"];
+    NSArray *blogPostsArray = [dataDictionary objectForKey:@"posts"];
+    
+    // loop through array of dictionaries assigned earlier to '*dataDictionary'
+    // store dictionaries in BlogPost Class
+    // loop through collection of blogPost array of object NSDictionary
+    for (NSDictionary *bpDictionary in blogPostsArray) {
+        // create instances of blogPost and store title
+        //BlogPost *blogPost = [BlogPost blogPostWithTitle:[bpDictionary objectForKey:@"Search"]];
+        BlogPost *blogPost = [BlogPost blogPostWithTitle:[bpDictionary objectForKey:@"title"]];
+        // store author into blogPost instance
+        blogPost.author = [bpDictionary objectForKey:@"author"];
+        
+        // add instances to blogPostsArray for display in table view (mutable array)
+        [self.blogPosts addObject:blogPost];
+    }
     
     // array of titles alloc and init
     //self.titlesArray = [[NSArray alloc] initWithObjects:..., nil];
@@ -209,11 +229,16 @@
     //NSString *object = [self.titlesArray objectAtIndex:indexPath.row];
     
     // gives blogpost at particular row (NSDictionary object, not just a string like when it was an Array)
-    NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+//    NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+    
+    // update TableViewController with this mutable array BlogPost that are returned instead of previously returning an NSDictionary
+    BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
     
     // take NSDictionary and extract 'title' from it to set our cell textLabel
-    cell.textLabel.text = [blogPost valueForKey:@"Title"];
-    cell.detailTextLabel.text = [blogPost valueForKey:@"Year"];
+//    cell.textLabel.text = [blogPost valueForKey:@"Title"]; // only for NSDictionary
+    cell.textLabel.text = blogPost.title;
+//    cell.detailTextLabel.text = [blogPost valueForKey:@"Year"]; // only for NSDictionary
+    cell.detailTextLabel.text = blogPost.author;
     
 // REPLACED WITH ARRAY OF NSDICTIONARY 'BLOGPOSTS' OBJECTS ABOVE (INSTEAD OF WITH NAME 'TITLE')
 //    // ALTERNATIVE (common convention)

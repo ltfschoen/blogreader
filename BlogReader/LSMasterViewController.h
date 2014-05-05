@@ -11,7 +11,7 @@
 @interface LSMasterViewController : UITableViewController
 
 // create property to hold data
-@property (strong, nonatomic) NSArray *blogPosts;
+@property (strong, nonatomic) NSMutableArray *blogPosts;
 
 
 @end

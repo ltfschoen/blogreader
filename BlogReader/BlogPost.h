@@ -20,9 +20,9 @@
 //}
 
 // facade to access the instance variable
-@property (nonatomic, strong) NSString *someTitle;
+@property (nonatomic, strong) NSString *title;
 
-@property (nonatomic, strong) NSString *someAuthor;
+@property (nonatomic, strong) NSString *author;
 
 // create return type
 // cannot return (BlogPost *), can only return 'id' (use as general rule: 'id' is general purpose data type that can create an instance of any class), as don't always know what type we'll be returning
@@ -34,11 +34,10 @@
 //         id randomObject = @"my string";
 
 // DESIGNATED INITIALIZER is 'initWithTitle'
-- (id) initWithTitle:(NSString *)someTitle;
+- (id) initWithTitle:(NSString *)title;
 
 // CONVENIENCE CONSTRUCTOR passing 'someTitle' as argument (Class method as uses +sign)
-+ (id) blogPostWithTitle:(NSString *)someTitle;
-
++ (id) blogPostWithTitle:(NSString *)title;
 
 // when declare primitive types (does not require 'strong' or 'weak')
 @property (nonatomic) int views;
