@@ -35,13 +35,19 @@
     
     // test access instance variable from custom class BlogPost using dot notation
     BlogPost *blogPost = [[BlogPost alloc] init];
-    blogPost.title = @"test title";
-    NSString *string = blogPost.title;
+    blogPost.someTitle = @"test title";
+    blogPost.someAuthor = @"test author";
+    NSString *string = blogPost.someTitle;
     // ALTERNATIVE #1
     //NSString *string =[blogPost title];
-    // ALTERNATIVE #2 use set method
+    // ALTERNATIVE #2 call method to set instance title of BlogPost object 
     //[blogPost setTitle:@"some title"];
     NSLog(@"%@", string);
+    
+    // more readable than blogPost.unread
+    if (blogPost.isUnread) {
+        NSLog(@"%@", @"hi");
+    }
 
     // create NSURL class object a convenience class to breakdown url
     //NSURL *blogURL = [NSURL URLWithString:@"http://blog.teamtreehouse.com/api/get_recent_summary/"];

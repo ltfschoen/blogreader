@@ -8,18 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BlogPost : NSObject {
+@interface BlogPost : NSObject
 
-    // declare instance variables scoped within implementation
-    // only visible to class BlogPost but no other class unless use getters and setters below
-    NSString *title;
-    NSString *author;
-}
+// LATEST XCODE DOES NOT REQUIRE THE BELOW (AUTOMATIC)
+//{
+//
+//    // declare instance variables scoped within implementation
+//    // only visible to class BlogPost but no other class unless use getters and setters below
+//    NSString *title;
+//    NSString *author;
+//}
 
-// setter method
-- (void) setTitle:(NSString *)title;
+// facade to access the instance variable
+@property (nonatomic, strong) NSString *someTitle;
 
-// getter method (returns instance so use  *)
-- (NSString *) title;
+@property (nonatomic, strong) NSString *someAuthor;
+
+// when declare primitive types (does not require 'strong' or 'weak')
+@property (nonatomic) int views;
+
+//@property (nonatomic) BOOL unread;
+
+// ALTERNATIVE (make more Readable
+@property (nonatomic, getter = isUnread)
+    BOOL unread;
+
+// REPLACE WITH @PROPERTY (LESS CUMBERSOME)
+//// setter method for instance variable Title
+//- (void) setTitle:(NSString *)title;
+//
+//// getter method for instance variable Title (returns instance so use  *)
+//- (NSString *) title;
 
 @end
