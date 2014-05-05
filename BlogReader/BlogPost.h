@@ -24,6 +24,22 @@
 
 @property (nonatomic, strong) NSString *someAuthor;
 
+// create return type
+// cannot return (BlogPost *), can only return 'id' (use as general rule: 'id' is general purpose data type that can create an instance of any class), as don't always know what type we'll be returning
+// 'id' follows design pattern 'DYNAMIC BINDING' where not specify the Class of Instance immediately
+// i.e. IN CONTROLLER .M, create valid definition
+// when run the applicaiton, it is BOUND AT RUNTIME, so at RUNTIME, OBJECT becomes NSString
+// but Compiler during compiling does not know what type of Object this is
+// also, when specifying 'id' type, do not used *, as already implied (i.e. not id *randomObject)
+//         id randomObject = @"my string";
+
+// DESIGNATED INITIALIZER is 'initWithTitle'
+- (id) initWithTitle:(NSString *)someTitle;
+
+// CONVENIENCE CONSTRUCTOR passing 'someTitle' as argument (Class method as uses +sign)
++ (id) blogPostWithTitle:(NSString *)someTitle;
+
+
 // when declare primitive types (does not require 'strong' or 'weak')
 @property (nonatomic) int views;
 

@@ -33,6 +33,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    // alloc and init using Dedicated Initalizer 'initWithTitle'
+    // Dedicated Initalizer ensures when initialize BlogPost it must have a Title
+    // creates a valid instance of BlogPost with a new title
+    BlogPost *bp = [[BlogPost alloc] initWithTitle:@"some title"];
+    bp.someAuthor = @"Author";
+    
+    // create another BlogPost Instance using CONVENIENCE CONSTRUCTOR
+    // call Class method directly instead of having to allocate it because
+    // inside this Class we are allocating a new Instance of BlogPost already
+    BlogPost *bp1 = [BlogPost blogPostWithTitle:@"another title"];
+    bp1.someTitle = @"Luke";
+    
     // test access instance variable from custom class BlogPost using dot notation
     BlogPost *blogPost = [[BlogPost alloc] init];
     blogPost.someTitle = @"test title";
