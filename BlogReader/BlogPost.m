@@ -10,4 +10,14 @@
 
 @implementation BlogPost
 
+// implement setting the title
+- (void) setTitle:(NSString *)_title {
+    title = _title;
+}
+
+// implement getting the title (returns instance so use  *)
+- (NSString *) title {
+    return title;
+}
+
 @end

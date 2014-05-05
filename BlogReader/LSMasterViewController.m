@@ -12,6 +12,8 @@
 // import so compiler aware using class within implementation
 #import "LSDetailViewController.h"
 
+#import "BlogPost.h"
+
 // NOT REQUIRED INITIALLY
 // defining private instance
 //@interface LSMasterViewController () {
@@ -30,6 +32,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // test access instance variable from custom class BlogPost using dot notation
+    BlogPost *blogPost = [[BlogPost alloc] init];
+    blogPost.title = @"test title";
+    NSString *string = blogPost.title;
+    // ALTERNATIVE #1
+    //NSString *string =[blogPost title];
+    // ALTERNATIVE #2 use set method
+    //[blogPost setTitle:@"some title"];
+    NSLog(@"%@", string);
 
     // create NSURL class object a convenience class to breakdown url
     //NSURL *blogURL = [NSURL URLWithString:@"http://blog.teamtreehouse.com/api/get_recent_summary/"];
