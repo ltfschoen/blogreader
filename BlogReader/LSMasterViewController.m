@@ -241,15 +241,25 @@
 //    cell.detailTextLabel.text = [blogPost valueForKey:@"Year"]; // only for NSDictionary
     cell.detailTextLabel.text = blogPost.author;
     
-    // before we set cell.imageView, we need to download the thumbnail data by create an instance of image data (Class methods defined in BlogPost.h allows us to reuse code and just use convenience constructors in implementation)
-    NSData *imageData = [NSData dataWithContentsOfURL:blogPost.thumbnailURL];
+    // debug error with thumbnail
+    NSLog(@"THUMBNAIL IS: %@", blogPost.thumbnail);
     
-    // create instance of UIImage
-    UIImage *image = [UIImage imageWithData:imageData];
+    // prevent app crashing by only displaying images in 'thumbnail' key of JSON file that are of type NSString (not NSNull)
+    if ( [blogPost.thumbnail isKindOfClass:[NSString class]] ) {
     
-    // add image to each table view cell
-    //cell.imageView.image = [UIImage imageNamed:@"treehouse.png"];
-    cell.imageView.image = image;
+        // before we set cell.imageView, we need to download the thumbnail data by create an instance of image data (Class methods defined in BlogPost.h allows us to reuse code and just use convenience constructors in implementation)
+        NSData *imageData = [NSData dataWithContentsOfURL:blogPost.thumbnailURL];
+        
+        // create instance of UIImage
+        UIImage *image = [UIImage imageWithData:imageData];
+        
+        // add image to each table view cell
+        //cell.imageView.image = [UIImage imageNamed:@"treehouse.png"];
+        cell.imageView.image = image;
+    } else {
+        // display default image
+        cell.imageView.image = [UIImage imageNamed:@"treehouse.png"];
+    }
     
 // REPLACED WITH ARRAY OF NSDICTIONARY 'BLOGPOSTS' OBJECTS ABOVE (INSTEAD OF WITH NAME 'TITLE')
 //    // ALTERNATIVE (common convention)

@@ -47,6 +47,10 @@
 
 // create implementation for instance method
 - (NSURL *) thumbnailURL {
+    
+    // debug error with thumbnail
+    NSLog(@"THUMBNAIL CLASS IS: %@", [self.thumbnail class]);
+    
     // take thumbnail string and return instance of NSURL
     return [NSURL URLWithString:self.thumbnail];
 }
