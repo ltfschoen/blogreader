@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) NSString *author;
 
+@property (nonatomic, strong) NSString *thumbnail;
+
 // create return type
 // cannot return (BlogPost *), can only return 'id' (use as general rule: 'id' is general purpose data type that can create an instance of any class), as don't always know what type we'll be returning
 // 'id' follows design pattern 'DYNAMIC BINDING' where not specify the Class of Instance immediately
@@ -39,14 +41,17 @@
 // CONVENIENCE CONSTRUCTOR passing 'someTitle' as argument (Class method as uses +sign)
 + (id) blogPostWithTitle:(NSString *)title;
 
-// when declare primitive types (does not require 'strong' or 'weak')
-@property (nonatomic) int views;
+// create instance method of thumbnail that will return an NSURL
+- (NSURL *) thumbnailURL;
 
-//@property (nonatomic) BOOL unread;
-
-// ALTERNATIVE (make more Readable
-@property (nonatomic, getter = isUnread)
-    BOOL unread;
+//// when declare primitive types (does not require 'strong' or 'weak')
+//@property (nonatomic) int views;
+//
+////@property (nonatomic) BOOL unread;
+//
+//// ALTERNATIVE (make more Readable
+//@property (nonatomic, getter = isUnread)
+//    BOOL unread;
 
 // REPLACE WITH @PROPERTY (LESS CUMBERSOME)
 //// setter method for instance variable Title

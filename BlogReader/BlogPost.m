@@ -22,10 +22,15 @@
     if ( self ) {
         // initialize 'someTitle' instance variable using 'setter'
         // where 'title' is the argument passed to this method
-        _title = title;
+        //_title = title;
+        self.title = title;
         
         // ALTERNATIVE using convenience constructor for 'setter'
         //[self setTitle:title];
+        
+        // prevent error by set thumbnail to nil incase instance method 'thumbnailURL' executes and thumbnail does not exist
+        self.author = nil;
+        self.thumbnail = nil;
         
     }
 
@@ -38,6 +43,12 @@
     // call DEDICATED INITIALIZER
     // allocate 'self' and return whatever is returned in the 'initWithTitle' instance method 
     return [[self alloc] initWithTitle:title];
+}
+
+// create implementation for instance method
+- (NSURL *) thumbnailURL {
+    // take thumbnail string and return instance of NSURL
+    return [NSURL URLWithString:self.thumbnail];
 }
 
 // synthesise and ensure accesses underlying instance variable from @interface section

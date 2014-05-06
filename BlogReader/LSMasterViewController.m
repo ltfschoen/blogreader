@@ -80,7 +80,7 @@
     
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    //NSLog(@"%@", dataDictionary);
+    NSLog(@"%@", dataDictionary);
     
     
 // REMOVED AS RETRIEVING FROM JSON URL
@@ -124,6 +124,7 @@
         BlogPost *blogPost = [BlogPost blogPostWithTitle:[bpDictionary objectForKey:@"title"]];
         // store author into blogPost instance
         blogPost.author = [bpDictionary objectForKey:@"author"];
+        blogPost.thumbnail = [bpDictionary objectForKey:@"thumbnail"];
         
         // add instances to blogPostsArray for display in table view (mutable array)
         [self.blogPosts addObject:blogPost];
@@ -239,6 +240,16 @@
     cell.textLabel.text = blogPost.title;
 //    cell.detailTextLabel.text = [blogPost valueForKey:@"Year"]; // only for NSDictionary
     cell.detailTextLabel.text = blogPost.author;
+    
+    // before we set cell.imageView, we need to download the thumbnail data by create an instance of image data (Class methods defined in BlogPost.h allows us to reuse code and just use convenience constructors in implementation)
+    NSData *imageData = [NSData dataWithContentsOfURL:blogPost.thumbnailURL];
+    
+    // create instance of UIImage
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    // add image to each table view cell
+    //cell.imageView.image = [UIImage imageNamed:@"treehouse.png"];
+    cell.imageView.image = image;
     
 // REPLACED WITH ARRAY OF NSDICTIONARY 'BLOGPOSTS' OBJECTS ABOVE (INSTEAD OF WITH NAME 'TITLE')
 //    // ALTERNATIVE (common convention)

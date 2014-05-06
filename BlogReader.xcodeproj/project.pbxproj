@@ -23,6 +23,7 @@
 		A312490619137B0A003D974A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A312490419137B0A003D974A /* InfoPlist.strings */; };
 		A312490819137B0A003D974A /* BlogReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A312490719137B0A003D974A /* BlogReaderTests.m */; };
 		A312495619175A60003D974A /* BlogPost.m in Sources */ = {isa = PBXBuildFile; fileRef = A312495519175A60003D974A /* BlogPost.m */; };
+		A3124958191851A9003D974A /* treehouse.png in Resources */ = {isa = PBXBuildFile; fileRef = A3124957191851A9003D974A /* treehouse.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		A312490719137B0A003D974A /* BlogReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlogReaderTests.m; sourceTree = "<group>"; };
 		A312495419175A60003D974A /* BlogPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogPost.h; sourceTree = "<group>"; };
 		A312495519175A60003D974A /* BlogPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogPost.m; sourceTree = "<group>"; };
+		A3124957191851A9003D974A /* treehouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = treehouse.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		A31248E019137B0A003D974A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3124957191851A9003D974A /* treehouse.png */,
 				A31248E119137B0A003D974A /* BlogReader-Info.plist */,
 				A31248E219137B0A003D974A /* InfoPlist.strings */,
 				A31248E519137B0A003D974A /* main.m */,
@@ -242,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3124958191851A9003D974A /* treehouse.png in Resources */,
 				A31248F519137B0A003D974A /* Images.xcassets in Resources */,
 				A31248E419137B0A003D974A /* InfoPlist.strings in Resources */,
 				A31248ED19137B0A003D974A /* Main.storyboard in Resources */,
