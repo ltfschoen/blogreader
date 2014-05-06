@@ -10,7 +10,7 @@
 
 @interface LSDetailViewController ()
 
-@property (strong, nonatomic) IBOutlet UIWebView *detailView;
+
 
 //- (void)configureView;
 @end
@@ -46,10 +46,13 @@
     
     // so everytime someone clicks on a blogpost it will open up the following
     // create instance of NSURL
-    NSURL *url = [NSURL URLWithString:@"http://blog.teamtreehouse.com"];
+    //NSURL *url = [NSURL URLWithString:@"http://blog.teamtreehouse.com"];
     
     // create instance of url request
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    //NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    
+    // simply refer to @property blogPostURL, which is what we set when preparing the segue in  LSMasterViewController.m to show URL details associated with list item
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.blogPostURL];
     
     // load default webpage using property detailView
     [self.detailView loadRequest:urlRequest];

@@ -365,15 +365,39 @@
     NSLog(@"%@",segue.identifier);
     
     // method (rather than dot notation) used to check Segue identifier 'showDetail' matches the one in the storyboard
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        // get indexPath of the selected row
+    //if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    // using BlogPost Custom Class (on event where segue for DetailView is fired to)
+    // where DetailViewController (segue object) has @properties 'detailView' and 'blogPostURL'
+    if ([[segue identifier] isEqualToString:@"showBlogPost"]) {
+// REPLACED WITH BLOGPOST CUSTOM CLASS
+//        // get indexPath of the selected row
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        // access appropriate title from titlesArray
+//        NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+//        //NSString *title = self.titlesArray[indexPath.row];
+//        // get DetailViewController (destination) and get it to the title from the array
+//        // method chaining used. perform setDetailItem on return value of [segue ...]
+//        [[segue destinationViewController] setDetailItem:blogPost];
+        
+        // to set the blogpost, first must access blogpost object (must know what row was selected). if access the TableView, there is method indexPathForSelectedRow.
+        // allows get indexPath of row that was selected within the TableView
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        // access appropriate title from titlesArray
-        NSDictionary *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
-        //NSString *title = self.titlesArray[indexPath.row];
-        // get DetailViewController (destination) and get it to the title from the array
-        // method chaining used. perform setDetailItem on return value of [segue ...]
-        [[segue destinationViewController] setDetailItem:blogPost];
+        
+        // access blogpost object from blogposts array
+        BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+        
+        // can send any message to object of type 'id', if method does not belong to that specific object the app will crash, but there is a @property called blogPostURL. call it through dot notation or set method
+        [segue.destinationViewController setBlogPostURL:blogPost.url];
+        
+        // ALTERNATIVE TO ABOVE LINE OF CODE
+        // create instance of detailviewcontroller, and get from the segue
+        // make above code legal by do a TYPECAST (DetailViewController *) from a generic type 'id' to a specific type for specific class DetailViewController (as we know the destinationViewController is the DetailViewController, because we checked the segue 'identifier'
+        //LSDetailViewController *dvc = (LSDetailViewController *)segue.destinationViewController;
+        // use specific instance of DetailViewController (dvc) to directly use the blogPostURL @property
+        //dvc.blogPostURL = blogPost.url;
+        
+
+
 
         
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
