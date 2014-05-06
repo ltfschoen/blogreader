@@ -55,6 +55,25 @@
     return [NSURL URLWithString:self.thumbnail];
 }
 
+
+- (NSString *) formattedDate {
+    // create implementation of NSDate formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    // date is within JSON object, so need to use 'date' property (of type String) in BlogPost Class to format the date by parsing the String into a Date object and telling DateFormatter what the String looks like (look at the JSON file i.e. 2013-11.... and look at the Date Formatting Guide)
+    // look at Format Specifiers for Dates in HELP and create a String based on that
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; // date coming in looks like this
+    // parse the string into a date format object
+    NSDate *tempDate = [dateFormatter dateFromString:self.date];
+    
+    // create a new format for the date
+    [dateFormatter setDateFormat:@"EE MMM,dd"];
+    
+    // return new format of the date as a string
+    return [dateFormatter stringFromDate:tempDate];
+}
+
+
 // synthesise and ensure accesses underlying instance variable from @interface section
 @synthesize title = _title;
 @synthesize author = _author;

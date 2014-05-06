@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) NSString *thumbnail;
 
+@property (nonatomic, strong) NSString *date;
+
 // create return type
 // cannot return (BlogPost *), can only return 'id' (use as general rule: 'id' is general purpose data type that can create an instance of any class), as don't always know what type we'll be returning
 // 'id' follows design pattern 'DYNAMIC BINDING' where not specify the Class of Instance immediately
@@ -43,6 +45,8 @@
 
 // create instance method of thumbnail that will return an NSURL
 - (NSURL *) thumbnailURL;
+
+- (NSString *) formattedDate;
 
 //// when declare primitive types (does not require 'strong' or 'weak')
 //@property (nonatomic) int views;

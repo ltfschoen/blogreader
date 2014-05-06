@@ -125,6 +125,7 @@
         // store author into blogPost instance
         blogPost.author = [bpDictionary objectForKey:@"author"];
         blogPost.thumbnail = [bpDictionary objectForKey:@"thumbnail"];
+        blogPost.date = [bpDictionary objectForKey:@"date"];
         
         // add instances to blogPostsArray for display in table view (mutable array)
         [self.blogPosts addObject:blogPost];
@@ -239,7 +240,15 @@
 //    cell.textLabel.text = [blogPost valueForKey:@"Title"]; // only for NSDictionary
     cell.textLabel.text = blogPost.title;
 //    cell.detailTextLabel.text = [blogPost valueForKey:@"Year"]; // only for NSDictionary
-    cell.detailTextLabel.text = blogPost.author;
+    //cell.detailTextLabel.text = blogPost.author;
+    
+    // append date to author using string concatenation using String Format Specifiers
+    //cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", blogPost.author, blogPost.date];
+    
+    // use the formatted date
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", blogPost.author, [blogPost formattedDate]];
+    
+    // format the date so more readable
     
     // debug error with thumbnail
     NSLog(@"THUMBNAIL IS: %@", blogPost.thumbnail);
