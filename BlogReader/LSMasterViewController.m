@@ -126,6 +126,8 @@
         blogPost.author = [bpDictionary objectForKey:@"author"];
         blogPost.thumbnail = [bpDictionary objectForKey:@"thumbnail"];
         blogPost.date = [bpDictionary objectForKey:@"date"];
+        // create instance of NSURL string from dictionary object and assign to url property of BlogPost Class
+        blogPost.url = [NSURL URLWithString:[bpDictionary objectForKey:@"url"]];
         
         // add instances to blogPostsArray for display in table view (mutable array)
         [self.blogPosts addObject:blogPost];
@@ -252,7 +254,7 @@
     
     // debug error with thumbnail
     NSLog(@"THUMBNAIL IS: %@", blogPost.thumbnail);
-    
+
     // prevent app crashing by only displaying images in 'thumbnail' key of JSON file that are of type NSString (not NSNull)
     if ( [blogPost.thumbnail isKindOfClass:[NSString class]] ) {
     
@@ -321,6 +323,39 @@
 //}
 //*/
 #pragma mark Add/Edit End
+
+#pragma mark - Table view delegate
+
+// action if user selects a row from table view
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // print out the row property of indexPath to confirm interception
+    NSLog(@"Row selected: %d", indexPath.row);
+    
+    // retrieve blogpost object from array
+    // use similar code as that used in 'cellForRowAtIndexPath method
+    BlogPost *blogPost = [self.blogPosts objectAtIndex:indexPath.row];
+    
+    // open url in browser window using index path. need access to main app object that controls events
+    // open AppDelegate.h. also there is the singleton App Object, in Supporting Files, main.m > UIApplicationMain instance object is created there behind the scenes
+    // retrieve its shared instance of application object. as it is a singleton object (only a single instance of it at any time)
+    UIApplication *application = [UIApplication sharedApplication];
+    // use UIApplications method called 'openURL' to open in default browser
+    [application openURL:blogPost.url];
+    
+    
+    
+    
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
+}
+
+#pragma mark
 #pragma mark -
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

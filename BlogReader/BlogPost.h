@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) NSString *date;
 
+@property (nonatomic, strong) NSURL *url; // allows open in browser
+
 // create return type
 // cannot return (BlogPost *), can only return 'id' (use as general rule: 'id' is general purpose data type that can create an instance of any class), as don't always know what type we'll be returning
 // 'id' follows design pattern 'DYNAMIC BINDING' where not specify the Class of Instance immediately
